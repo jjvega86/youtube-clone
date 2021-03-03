@@ -6,8 +6,12 @@ import VideoList from "./components/VideoList/VideoList";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { videos: [] };
+    this.state = { videos: [], selectedVideo: null };
   }
+
+  onVideoSelect = (video) => {
+    console.log(`This ${video} is from the app!`);
+  };
 
   onSearchSubmit = async (term) => {
     await youtube
@@ -26,7 +30,10 @@ class App extends Component {
     return (
       <div className="ui container">
         <SearchBar onSubmit={this.onSearchSubmit} />
-        <VideoList videos={this.state.videos} />
+        <VideoList
+          onVideoSelect={this.onVideoSelect}
+          videos={this.state.videos}
+        />
       </div>
     );
   }
