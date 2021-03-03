@@ -22,7 +22,10 @@ class App extends Component {
         },
       })
       .then((res) => {
-        this.setState({ videos: res.data.items });
+        this.setState({
+          videos: res.data.items,
+          selectedVideo: res.data.items[0],
+        });
       })
       .catch((err) => console.log(err));
   };
