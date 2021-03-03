@@ -30,6 +30,10 @@ class App extends Component {
       .catch((err) => console.log(err));
   };
 
+  componentDidMount(){
+    this.onSearchSubmit('welcome');
+  }
+
   render() {
     return (
       <div className="ui container">
