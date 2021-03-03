@@ -10,7 +10,6 @@ class App extends Component {
   }
 
   onVideoSelect = (video) => {
-    console.log(`This ${video.snippet.title} is from the app!`);
     this.setState({ selectedVideo: video });
   };
 
