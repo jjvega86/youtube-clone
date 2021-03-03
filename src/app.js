@@ -5,15 +5,20 @@ import youtube from "./api/youtube";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: "" };
+    this.state = { videos: [] };
   }
 
   onSearchSubmit = async (term) => {
-    await youtube.get(`/search`, {
-      params: {
-        q: term,
-      },
-    });
+    await youtube
+      .get(`/search`, {
+        params: {
+          q: term,
+        },
+      })
+      .then((res) => {
+        this.setState({ videos: res.data.items });
+      })
+      .catch((err) => console.log(err));
   };
 
   render() {
