@@ -30,15 +30,16 @@ class App extends Component {
       .catch((err) => console.log(err));
   };
 
-  componentDidMount(){
-    this.onSearchSubmit('welcome');
+  componentDidMount() {
+    this.onSearchSubmit("star wars");
   }
 
   render() {
     return (
       <div className="ui container">
+        <div className="ui hidden divider"></div>
         <SearchBar onSubmit={this.onSearchSubmit} />
-        <div className="ui hidden divider"></div>{" "}
+        <div className="ui hidden divider"></div>
         {/* Creates easy margin between components. Could also write CSS */}
         <div className="ui grid">
           <div className="ui row">
