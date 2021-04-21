@@ -4,7 +4,7 @@ import "./SearchBar.css";
 class SearchBar extends Component {
   constructor(props) {
     super(props);
-    this.state = { term: "blahblahblah" };
+    this.state = { term: "Search Here!" };
   }
 
   onFormSubmit = (e) => {
