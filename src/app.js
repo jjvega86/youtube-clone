@@ -3,11 +3,12 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import youtube from "./api/youtube";
 import VideoList from "./components/VideoList/VideoList";
 import VideoDetail from "./components/VideoDetail/VideoDetail";
+import CommentList from './components/CommentList/CommentList';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { videos: [], selectedVideo: null };
+    this.state = { videos: [], selectedVideo: null, comments: [] };
   }
 
   onVideoSelect = (video) => {
@@ -45,6 +46,7 @@ class App extends Component {
           <div className="ui row">
             <div className="eleven wide column">
               <VideoDetail video={this.state.selectedVideo} />
+              <CommentList comments={this.state.comments}/>
             </div>
             <div className="five wide column">
               <VideoList
