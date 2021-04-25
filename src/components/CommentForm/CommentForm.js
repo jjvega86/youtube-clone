@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 
 const styles = {
   padding: "25px",
 };
 
-const CommentField = (props) => {
+const CommentField = () => {
+  const [text, setText] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`You've submitted this text: ${text}`);
+  };
+
   return (
-    <form class="ui reply form" style={styles}>
+    <form class="ui reply form" style={styles} onSubmit={handleSubmit}>
       <div class="field">
-        <textarea></textarea>
+        <input
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
       </div>
-      <div class="ui blue labeled submit icon button">
-        <i class="icon edit"></i> Add Reply
-      </div>
+      <button class="ui blue labeled submit icon button" type="submit">
+        <i class="icon edit"></i>
+        Add Comment
+      </button>
     </form>
   );
 };
