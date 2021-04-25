@@ -13,16 +13,16 @@ const CommentField = () => {
   };
 
   return (
-    <form class="ui reply form" style={styles} onSubmit={handleSubmit}>
-      <div class="field">
+    <form className="ui reply form" style={styles} onSubmit={handleSubmit}>
+      <div className="field">
         <input
           type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
       </div>
-      <button class="ui blue labeled submit icon button" type="submit">
-        <i class="icon edit"></i>
+      <button className="ui blue labeled submit icon button" type="submit">
+        <i className="icon edit"></i>
         Add Comment
       </button>
     </form>

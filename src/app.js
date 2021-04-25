@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SearchBar from "./components/SearchBar/SearchBar";
 import youtube from "./api/youtube";
+import youtubeAPI from "./api/youtubeAPI";
 import VideoList from "./components/VideoList/VideoList";
 import VideoDetail from "./components/VideoDetail/VideoDetail";
 import CommentList from "./components/CommentList/CommentList";
@@ -12,18 +13,22 @@ class App extends Component {
     this.state = {
       videos: [],
       selectedVideo: null,
-      comments: [
-        {
-          author: "JJ",
-          date: "04/25/2021",
-          text: "This is a comment",
-        },
-      ],
+      comments: [],
     };
   }
 
-  onVideoSelect = (video) => {
+  onVideoSelect = async (video) => {
+    console.log(video);
+    const videoObject = {
+      name: video.snippet.title,
+      description: video.snippet.description,
+      videoId: video.id.videoId,
+    };
     this.setState({ selectedVideo: video });
+    await youtubeAPI
+      .post("/", videoObject)
+      .then((response) => console.log(response))
+      .catch((ex) => console.log(ex));
   };
 
   onSearchSubmit = async (term) => {
