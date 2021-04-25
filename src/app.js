@@ -24,6 +24,7 @@ class App extends Component {
       description: video.snippet.description,
       videoId: video.id.videoId,
     };
+    console.log(videoObject);
     this.setState({ selectedVideo: video });
     await youtubeAPI
       .post("/", videoObject)
