@@ -3,9 +3,6 @@ import "./CommentList.css";
 import Comment from "../Comment/Comment";
 
 const CommentList = ({ comments }) => {
-  {
-    /* Need to pass this down as props from a stateful variable that is populated on GET request to API */
-  }
   let renderedComments = comments.map((comment) => {
     return (
       <Comment
@@ -15,11 +12,14 @@ const CommentList = ({ comments }) => {
       />
     );
   });
-  return (
+  return renderedComments.length > 0 ? (
     <div className="ui comments">
       <h3 className="ui dividing header">Comments</h3>
+
       {renderedComments}
     </div>
+  ) : (
+    <p>No Comments!</p>
   );
 };
 

@@ -1,19 +1,18 @@
 import React from "react";
 import "./Comment.css";
 
-const Comment = ({author, date, text}) => {
-    {/* Need to pass props values down from CommentList in renderedComments */}
+const Comment = ({ author, date, text }) => {
   return (
     <div className="comment">
-      <a className="avatar"></a>
+      {/*<a className="avatar"></a>*/}
       <div className="content">
-        <a className="author">{author}</a>
+        <p className="author">{author}</p>
         <div className="metadata">
           <span className="date">{date}</span>
         </div>
         <div className="text">{text}</div>
         <div className="actions">
-          <a className="reply">Reply</a>
+          <button className="reply">Reply</button>
         </div>
       </div>
     </div>
