@@ -4,6 +4,7 @@ import CommentContainer from "../CommentContainer/CommentContainer";
 // shows video player and video details (title and description)
 
 const VideoDetail = ({ video }) => {
+  console.log(video);
   if (!video) {
     return <div>Loading...</div>;
   }
@@ -19,7 +20,7 @@ const VideoDetail = ({ video }) => {
         <p>{video.snippet.description}</p>
       </div>
       <div>
-        <CommentContainer />
+        <CommentContainer selectedVideoId={video.id.videoId} />
       </div>
     </div>
   );

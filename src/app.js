@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SearchBar from "./components/SearchBar/SearchBar";
 import youtube from "./api/youtube";
+import youtubeAPI from "./api/youtubeAPI";
 import VideoList from "./components/VideoList/VideoList";
 import VideoDetail from "./components/VideoDetail/VideoDetail";
 
@@ -13,8 +14,17 @@ class App extends Component {
     };
   }
 
-  onVideoSelect = (video) => {
+  onVideoSelect = async (video) => {
     this.setState({ selectedVideo: video });
+    const videoObject = {
+      name: video.snippet.title,
+      videoId: video.id.videoId,
+      description: video.snippet.description,
+    };
+    await youtubeAPI
+      .post("/", videoObject)
+      .then((res) => console.log(res))
+      .catch((ex) => console.log(ex));
   };
 
   onSearchSubmit = async (term) => {
