@@ -1,4 +1,5 @@
 import React from "react";
+import CommentContainer from "../CommentContainer/CommentContainer";
 
 // shows video player and video details (title and description)
 
@@ -16,6 +17,9 @@ const VideoDetail = ({ video }) => {
       <div className="ui raised segment">
         <h4 className="ui header">{video.snippet.title}</h4>
         <p>{video.snippet.description}</p>
+      </div>
+      <div>
+        <CommentContainer />
       </div>
     </div>
   );
