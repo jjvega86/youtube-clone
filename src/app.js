@@ -4,6 +4,7 @@ import youtube from "./api/youtube";
 import VideoList from "./components/VideoList/VideoList";
 import VideoDetail from "./components/VideoDetail/VideoDetail";
 import CommentList from "./components/CommentList/CommentList";
+import CommentField from "./components/CommentField/CommentField";
 
 class App extends Component {
   constructor(props) {
@@ -56,6 +57,7 @@ class App extends Component {
           <div className="ui row">
             <div className="eleven wide column">
               <VideoDetail video={this.state.selectedVideo} />
+              <CommentField />
               <CommentList comments={this.state.comments} />
             </div>
             <div className="five wide column">

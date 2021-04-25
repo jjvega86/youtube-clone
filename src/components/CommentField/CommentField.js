@@ -1,8 +1,12 @@
 import React from "react";
 
+const styles = {
+  padding: "25px",
+};
+
 const CommentField = (props) => {
   return (
-    <form class="ui reply form">
+    <form class="ui reply form" style={styles}>
       <div class="field">
         <textarea></textarea>
       </div>
