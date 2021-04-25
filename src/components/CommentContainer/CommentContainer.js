@@ -12,8 +12,9 @@ const CommentContainer = ({ selectedVideoId }) => {
     youtubeAPI.get(`/comments/${selectedVideoId}`).then((res) => {
       let fetchedComments = res.data;
       setComments(fetchedComments);
+      console.log(comments);
     });
-  });
+  }, [selectedVideoId]);
 
   return (
     <div>
