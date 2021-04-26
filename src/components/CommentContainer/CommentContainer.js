@@ -8,17 +8,44 @@ const CommentContainer = ({ selectedVideoId }) => {
   // POST a comment from CommentForm
   // GET all comments on component mount
   const [comments, setComments] = useState([]);
+  const [text, setText] = useState("");
+  const [posted, setPosted] = useState(false);
+
   useEffect(() => {
     youtubeAPI.get(`/comments/${selectedVideoId}`).then((res) => {
       let fetchedComments = res.data;
       setComments(fetchedComments);
-      console.log(comments);
     });
-  }, [selectedVideoId]);
+  }, [selectedVideoId, posted]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    youtubeAPI
+      .put("/comments", {
+        videoId: selectedVideoId,
+        comment: {
+          author: "JJ",
+          date: new Date().toString,
+          text: text,
+        },
+      })
+      .then((res) => console.log(res))
+      .catch((ex) => console.log(ex));
+    setPosted(!posted);
+  };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setText(e.target.value);
+  };
 
   return (
     <div>
-      <CommentForm />
+      <CommentForm
+        submitForm={handleSubmit}
+        text={text}
+        handleChange={handleChange}
+      />
       <CommentList comments={comments} />
     </div>
   );
