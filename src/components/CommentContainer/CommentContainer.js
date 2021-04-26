@@ -4,18 +4,21 @@ import CommentList from "../CommentList/CommentList";
 import youtubeAPI from "../../api/youtubeAPI";
 
 const CommentContainer = ({ selectedVideoId }) => {
-  // TODO:
-  // POST a comment from CommentForm
-  // GET all comments on component mount
   const [comments, setComments] = useState([]);
   const [text, setText] = useState("");
   const [posted, setPosted] = useState(false);
 
   useEffect(() => {
-    youtubeAPI.get(`/comments/${selectedVideoId}`).then((res) => {
-      let fetchedComments = res.data;
-      setComments(fetchedComments);
-    });
+    const getComments = async () =>
+      await youtubeAPI
+        .get(`/comments/${selectedVideoId}`)
+        .then((res) => {
+          console.log(res.data);
+          let fetchedComments = res.data;
+          setComments(fetchedComments);
+        })
+        .catch((error) => console.error(error.response.data));
+    getComments();
   }, [selectedVideoId, posted]);
 
   const handleSubmit = async (e) => {
@@ -32,6 +35,7 @@ const CommentContainer = ({ selectedVideoId }) => {
       .then((res) => console.log(res))
       .catch((error) => console.error(error.response.data));
     setPosted(!posted);
+    setText("");
   };
 
   const handleChange = (e) => {

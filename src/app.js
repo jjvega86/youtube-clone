@@ -24,7 +24,7 @@ class App extends Component {
     await youtubeAPI
       .post("/", videoObject)
       .then((res) => console.log(res))
-      .catch((ex) => console.log(ex));
+      .catch((error) => console.error(error.response.data));
   };
 
   onSearchSubmit = async (term) => {
