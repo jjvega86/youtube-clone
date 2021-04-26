@@ -1,10 +1,6 @@
 import React from "react";
 
-const deleteComment = (id) => {
-  // make an axios DELETE request with the comment id
-};
-
-const Comment = ({ author, date, text }) => {
+const Comment = ({ commentId, author, date, text, deleteComment }) => {
   return (
     <div className="comment">
       {/*<a className="avatar"></a>*/}
@@ -16,7 +12,12 @@ const Comment = ({ author, date, text }) => {
         <div className="text">{text}</div>
         <div className="actions">
           <button className="ui blue submit icon button">Reply</button>
-          <button className="ui blue submit icon button">Delete</button>
+          <button
+            className="ui blue submit icon button"
+            onClick={() => deleteComment(commentId)}
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>

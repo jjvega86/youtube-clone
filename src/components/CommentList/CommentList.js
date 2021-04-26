@@ -2,14 +2,16 @@ import React from "react";
 import "./CommentList.css";
 import Comment from "../Comment/Comment";
 
-const CommentList = ({ comments }) => {
+const CommentList = ({ comments, deleteComment }) => {
   let renderedComments = comments.map((comment) => {
     return (
       <Comment
         key={comment.commentId}
+        commentId={comment.commentId}
         author={comment.author}
         date={comment.date}
         text={comment.text}
+        deleteComment={deleteComment}
       />
     );
   });

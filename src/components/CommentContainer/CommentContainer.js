@@ -9,17 +9,18 @@ const CommentContainer = ({ selectedVideoId }) => {
   const [posted, setPosted] = useState(false);
 
   useEffect(() => {
-    const getComments = async () =>
-      await youtubeAPI
-        .get(`/comments/${selectedVideoId}`)
-        .then((res) => {
-          console.log(res.data);
-          let fetchedComments = res.data;
-          setComments(fetchedComments);
-        })
-        .catch((error) => console.error(error.response.data));
     getComments();
   }, [selectedVideoId, posted]);
+
+  const getComments = async () => {
+    await youtubeAPI
+      .get(`/comments/${selectedVideoId}`)
+      .then((res) => {
+        let fetchedComments = res.data;
+        setComments(fetchedComments);
+      })
+      .catch((error) => console.error(error.response.data));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,6 +44,17 @@ const CommentContainer = ({ selectedVideoId }) => {
     setText(e.target.value);
   };
 
+  const deleteComment = async (id) => {
+    console.log(id);
+    youtubeAPI
+      .delete(`/comments/${selectedVideoId}/${id}`)
+      .then((res) => {
+        console.log(res);
+        getComments();
+      })
+      .catch((error) => console.error(error.response.data));
+  };
+
   return (
     <div>
       <CommentForm
@@ -50,7 +62,7 @@ const CommentContainer = ({ selectedVideoId }) => {
         text={text}
         handleChange={handleChange}
       />
-      <CommentList comments={comments} />
+      <CommentList comments={comments} deleteComment={deleteComment} />
     </div>
   );
 };
