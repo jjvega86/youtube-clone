@@ -6,6 +6,7 @@ const CommentList = ({ comments }) => {
   let renderedComments = comments.map((comment) => {
     return (
       <Comment
+        key={comment.commentId}
         author={comment.author}
         date={comment.date}
         text={comment.text}
@@ -15,7 +16,6 @@ const CommentList = ({ comments }) => {
   return renderedComments.length > 0 ? (
     <div className="ui comments">
       <h3 className="ui dividing header">Comments</h3>
-
       {renderedComments}
     </div>
   ) : (

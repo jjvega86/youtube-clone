@@ -4,7 +4,6 @@ import CommentContainer from "../CommentContainer/CommentContainer";
 // shows video player and video details (title and description)
 
 const VideoDetail = ({ video }) => {
-  console.log(video);
   if (!video) {
     return <div>Loading...</div>;
   }

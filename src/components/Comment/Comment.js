@@ -1,5 +1,4 @@
 import React from "react";
-import "./Comment.css";
 
 const Comment = ({ author, date, text }) => {
   return (
@@ -12,7 +11,7 @@ const Comment = ({ author, date, text }) => {
         </div>
         <div className="text">{text}</div>
         <div className="actions">
-          <button className="reply">Reply</button>
+          <button className="ui blue submit icon button">Reply</button>
         </div>
       </div>
     </div>

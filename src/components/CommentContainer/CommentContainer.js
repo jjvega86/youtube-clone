@@ -18,19 +18,19 @@ const CommentContainer = ({ selectedVideoId }) => {
     });
   }, [selectedVideoId, posted]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    youtubeAPI
-      .put("/comments", {
+    await youtubeAPI
+      .post("/comments", {
         videoId: selectedVideoId,
         comment: {
           author: "JJ",
-          date: new Date().toString,
+          date: new Date().toString(),
           text: text,
         },
       })
       .then((res) => console.log(res))
-      .catch((ex) => console.log(ex));
+      .catch((error) => console.error(error.response.data));
     setPosted(!posted);
   };
 
